@@ -62,21 +62,6 @@ let Gameboard = {
     }
 };
 
-/*let round = (function() {
-    let win = false;
-    let roundCounter = 0;
-    while(!win && roundCounter < 9) {
-        Gameboard.printBoard();
-        Gameboard.playerAction();
-        win = Gameboard.winCheck();
-        Gameboard.switchPlayer();
-        roundCounter++;
-    }
-    if(!win && roundCounter === 9) {
-        console.log("It's a draw");
-    }
-})(); */
-
 const divBoard = document.getElementById("board");
 const textDiv = document.getElementById("text-div");
 
