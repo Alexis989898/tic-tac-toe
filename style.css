@@ -1,3 +1,8 @@
+:root {
+    --background: #000000; 
+    --main: #FFFFFF;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -11,4 +16,40 @@ html {
 body {
     height: 100vh;
     width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gameboard {
+    background-color: var(--background);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boardgrid {
+    width: min(50vw, 500px);
+    height: min(50vw, 500px);
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 10px;
+    background-color: var(--main);
+}
+
+.boardspace {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    color: var(--main);
+    background-color: var(--background);
 }
