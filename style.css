@@ -11,24 +11,37 @@
 
 html {
     height: 100%;
+    font-family: sans-serif;
 }
 
 body {
-    height: 100vh;
-    width: 100%;
+    height: max(100vh, 600px);
+    width: max(100%, 480px);
 
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
-.gameboard {
+#text-div {
+    padding-bottom: 10px;
+    width: 60%;
+    font-size: 2rem;
+    color: var(--main);
+    display: flex;
+    justify-content: center;
+    user-select: none;
+}
+
+.gameboard-wrapper {
     background-color: var(--background);
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .boardgrid {
@@ -49,6 +62,10 @@ body {
 
     width: 100%;
     height: 100%;
+
+    font-size: max(3rem, 6vw);
+
+    user-select: none;
 
     color: var(--main);
     background-color: var(--background);

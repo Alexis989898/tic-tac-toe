@@ -1,25 +1,21 @@
 let Gameboard = {
-    board: Array.from({ length: 10 }, (_, index) => index),
+    board: Array(9).fill(""),
     turnPlayer: "X",
-    printBoard: function() {
-        let boardString = "";
-        for(let i = 0; i < 9; i++) {
-            boardString += this.board[i];
-            if(i % 3 === 2 && i < 8) {
-                boardString += "\n---------\n";
-            } else if(i < 8) {
-                boardString += " | ";
+    updateBoard: function(e) {
+        const clickedElement = e.target;
+        const number = clickedElement.getAttribute("number");
+        if(this.board[number] == "X" || this.board[number] == "O") {
+            if(!(this.winCheck)) {
+                textDiv.innerText = "Choose an available space";
             }
+        } else {
+            clickedElement.innerText = this.turnPlayer;
+            this.board[number] = this.turnPlayer;
+            const win = this.winCheck();
+            if(!win) {this.switchPlayer();};
         }
-        console.log(boardString);
-    },
-    playerAction: function() {
-        let playerChoice = prompt(this.turnPlayer + "'s turn. Choose a space:");
-        while(this.board[playerChoice] == "X" || this.board[playerChoice] == "O" 
-        || playerChoice == NaN || this.board[playerChoice] == null) {
-            playerChoice = prompt("Incorrect. Choose an available space:")
-        }
-        this.board[playerChoice] = this.turnPlayer;
+
+        console.log(this.board);
     },
     switchPlayer: function() {
         if(this.turnPlayer == "X") {
@@ -27,6 +23,7 @@ let Gameboard = {
         } else {
             this.turnPlayer = "X";
         }
+        textDiv.innerText = Gameboard.turnPlayer + "'s turn";
     },
     winCheck: function() {
         let win = false;
@@ -40,8 +37,7 @@ let Gameboard = {
                 this.board[i + 3] == this.turnPlayer &&
                 this.board[i + 6] == this.turnPlayer)
             ) {
-                this.printBoard();
-                console.log(this.turnPlayer + " won!");
+                textDiv.innerText = this.turnPlayer + " won!";
                 win = true;
                 break;
             }
@@ -55,11 +51,13 @@ let Gameboard = {
                 this.board[4] == this.turnPlayer &&
                 this.board[6] == this.turnPlayer)
             )  {
-                this.printBoard();
-                console.log(this.turnPlayer + " won!");
+                textDiv.innerText = this.turnPlayer + " won!";
                 win = true;
             }
-
+        if(!Gameboard.board.includes("") && !win) {
+            textDiv.innerText = "Draw";
+            win = true;
+        }
         return win;
     }
 };
@@ -79,6 +77,16 @@ let Gameboard = {
     }
 })(); */
 
-let GameDisplay = {
+const divBoard = document.getElementById("board");
+const textDiv = document.getElementById("text-div");
 
+textDiv.innerText = Gameboard.turnPlayer + "'s turn";
+
+for(let i = 0; i < Gameboard.board.length; i++) {
+    const boardElement = document.createElement("div");
+    boardElement.className = "boardspace";
+    boardElement.setAttribute("number", i);
+    boardElement.addEventListener("click", () => Gameboard.updateBoard(event));
+    boardElement.innerText = Gameboard.board[i];
+    divBoard.appendChild(boardElement);
 }
