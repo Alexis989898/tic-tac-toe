@@ -27,6 +27,7 @@ body {
 #text-div {
     padding-bottom: 10px;
     width: 60%;
+    height: 10%;
     font-size: 2rem;
     color: var(--main);
     display: flex;
@@ -45,8 +46,8 @@ body {
 }
 
 .boardgrid {
-    width: min(50vw, 500px);
-    height: min(50vw, 500px);
+    width: clamp(400px, 50vw, 500px);
+    height: clamp(400px, 50vw, 500px);
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -69,4 +70,44 @@ body {
 
     color: var(--main);
     background-color: var(--background);
+    cursor: pointer;
+    opacity: 1;
+    transition: 600ms;
+}
+
+.boardspace:hover::before {
+    content: attr(data-player);
+    opacity: 0.8;
+    color: var(--main);
+    transition: 600ms;
+}
+
+.boardspace.checked:hover::before {
+    content: none;
+}
+
+.buttons {
+    padding-top: 20px;
+    width: 60%;
+    font-size: 2rem;
+    color: var(--main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    height: 10%;
+}
+
+.reset-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background);
+    border: none;
+    cursor: pointer;
+    transition: 600ms;
+}
+
+.reset-btn:hover {
+    transform: rotate(-360deg);
 }
