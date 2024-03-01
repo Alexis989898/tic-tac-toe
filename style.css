@@ -1,6 +1,10 @@
-:root {
-    --background: #000000; 
-    --main: #FFFFFF;
+.light-mode {
+    --background: #FFFFFF;
+    --main: #000000;
+}
+
+.hidden-display {
+    display: none;
 }
 
 * {
@@ -22,12 +26,15 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
+    --background: #000000; 
+    --main: #FFFFFF;
 }
 
 #text-div {
     padding-bottom: 10px;
     width: 60%;
-    height: 10%;
+    height: 15%;
     font-size: 2rem;
     color: var(--main);
     display: flex;
@@ -54,6 +61,8 @@ body {
     grid-template-rows: 1fr 1fr 1fr;
     gap: 10px;
     background-color: var(--main);
+
+    font-size: 3rem;
 }
 
 .boardspace {
@@ -64,7 +73,7 @@ body {
     width: 100%;
     height: 100%;
 
-    font-size: max(3rem, 6vw);
+    font-size: 2em;
 
     user-select: none;
 
@@ -86,6 +95,10 @@ body {
     content: none;
 }
 
+.boardspace:active {
+    font-size: 2.5em;
+}
+
 .buttons {
     padding-top: 20px;
     width: 60%;
@@ -98,16 +111,25 @@ body {
     height: 10%;
 }
 
-.reset-btn {
+.button {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--background);
     border: none;
     cursor: pointer;
+}
+
+.reset-btn {
+    background-color: var(--background);
     transition: 600ms;
 }
 
 .reset-btn:hover {
     transform: rotate(-360deg);
+}
+
+.darkswitch-btn {
+    background-color: var(--background);
+    padding-left: 10px;
+    transition: 600ms;
 }

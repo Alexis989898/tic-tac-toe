@@ -134,3 +134,16 @@ const display = (function() {
         divBoard.appendChild(boardElement);
     }
 })();
+
+const switchlight = (function() {
+    const switchBtn = document.querySelector(".darkswitch-btn");
+    const darkIcon = document.querySelector(".dark-icon");
+    const lightIcon = document.querySelector(".light-icon");
+    let body = document.body;
+
+    switchBtn.addEventListener("click", () => {
+        body.classList.toggle("light-mode");
+        darkIcon.classList.toggle("hidden-display");
+        lightIcon.classList.toggle("hidden-display");
+    });
+})();
